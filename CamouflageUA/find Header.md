@@ -6,8 +6,8 @@
 import requests
 url = 'http://httpbin.org/get'
 headers = {'User-Agent':"Mozilla/5.0 (X11; Ubuntu; Linux x86_64;rv:52.0) Gecko/20100101 Firefox/52.0"}
-data = requests.get(url,headers = headers)
-print(data.text)
+data = requests.get(url,headers = headers) # sends the request and saves it in data
+print(data.text) #print the contents returned by server
 ```
 
 ### __Getting UA is also easy:open website->右键->检查网页->Network->选中一个请求->Header__

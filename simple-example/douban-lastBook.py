@@ -3,7 +3,10 @@
 '''
 
 """
- second comment 
+ 3 steps：
+    1: Request and get website data
+    2：Parse website and extract valuable data
+    3：Access data
 """
 
 import requests
@@ -66,4 +69,14 @@ print('titles: ', titles)
 print('ratings: ', ratings)
 print('authors: ', authors)
 print('details: ', details)
+
+# data store
+import pandas
+result = pandas.DataFrame()
+result['img_urls'] = img_urls
+result['titles'] = titles
+result['ratings'] = ratings
+result['authors'] = authors
+result['details'] = details
+result.to_csv('result.csv', index=None)
 

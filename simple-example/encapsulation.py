@@ -1,12 +1,26 @@
+import time
+
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 
 
 # request data
-def get_data():
-    url = 'https://book.douban.com/latest'
-    data = requests.get(url)
+def get_data(url, num_retries=3):
+    try:
+        data = requests.get(url)
+        # print(data.status_code)
+    except requests.exceptions.ConnectionError as e:
+        print("请求错误 url:", url)
+        print("错误详情:", e)
+        data = None
+    # server error
+    if (data is not None) and (500 <= data.status_code <= 600):
+        if num_retries > 0:
+            print("server error ,retrying...")
+            time.sleep(1)
+            num_retries -= 1
+            get_data(url, num_retries)
     return data
 
 
@@ -63,7 +77,7 @@ def parse_data(data):
     print('ratings: ', ratings)
     print('authors: ', authors)
     print('details: ', details)
-    return img_urls, titles, ratings,authors, details
+    return img_urls, titles, ratings, authors, details
 
 
 def save_data(img_urls, titles, ratings, authors, details):
@@ -77,12 +91,11 @@ def save_data(img_urls, titles, ratings, authors, details):
 
 
 # start the crawler
-def run():
-    data = get_data()
+def run(getUrl):
+    data = get_data(getUrl)
     img_urls, titles, ratings, authors, details = parse_data(data)
     save_data(img_urls, titles, ratings, authors, details)
 
-
 if __name__ == '__main__':
-    run()
-
+    url = 'https://book.douban.com/latest'
+    run(url)

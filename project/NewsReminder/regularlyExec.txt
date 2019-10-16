@@ -1,0 +1,12 @@
+In Ubuntu:
+
+create a new folder 'mytask' in directory :home, and copy these two .py files into it
+
+using command : crontab -e    IN TERMINAL
+
+add the following code:
+
+30 7 * * 1 /home/anaconda3/binpython3.6 /home/shensir/mytask/NewsReport.py >>/home/mytask/NewsReport.log 2>&1m
+
+it means that use Python.3.6 provided by Anaconda to execute this .py file every Monday at 7.10am
+and output log file to NewsReport.log

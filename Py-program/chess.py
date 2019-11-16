@@ -1,5 +1,9 @@
 import os
-
+'''
+TL TM TR
+ML MM MR
+BL BM BR
+'''
 
 def print_board(board):
     print(board['TL'] + '|' + board['TM'] + '|' + board['TR'])
@@ -7,7 +11,9 @@ def print_board(board):
     print(board['ML'] + '|' + board['MM'] + '|' + board['MR'])
     print('-+-+-')
     print(board['BL'] + '|' + board['BM'] + '|' + board['BR'])
-
+    print('{TL TM TR')
+    print('ML MM MR')
+    print('BL BM BR}')
 
 def main():
     init_board = {

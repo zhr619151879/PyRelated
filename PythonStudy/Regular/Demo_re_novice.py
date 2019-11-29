@@ -52,12 +52,14 @@ def greed_match():
     res = re.match(r'^(\d+?)(0*)$', '102300')
     print(res.groups())  # ('1023', '00')
 
+
 def compile_first():
     # 如果一个正则表达式需要重复使用N次
     # 出于对效率的考虑,可以预编译该表达式
     pattern = r'^(\d{3})\-(\d{3,8})$'
     re_precompile = re.compile(pattern)
     print(re_precompile.match('010-12345').groups())
+
 
 method1_match()
 method3_group()
